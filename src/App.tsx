@@ -34,6 +34,16 @@ const App = () => {
     [list, setList]
   );
 
+  const handleRemoveItem = useCallback(
+    (id: number) => {
+      let newList = [...list].filter((x) => {
+        return x.id !== id;
+      });
+      setList(newList);
+    },
+    [list, setList]
+  );
+
   return (
     <Component.Container>
       <Component.Area>
@@ -41,6 +51,7 @@ const App = () => {
         <AddArea onEnter={handleAddTask} />
         {list.map((item, index) => (
           <ListItem
+            removeItem={handleRemoveItem}
             onUpdateCheck={handleItemUpdateCheck}
             key={index}
             item={item}

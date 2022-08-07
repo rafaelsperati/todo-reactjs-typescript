@@ -8,8 +8,14 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  .image {
+  .add {
     margin-right: 5px;
+    cursor: pointer;
+    font-size: 24px;
+  }
+
+  .add:hover {
+    color: green;
   }
 
   input {

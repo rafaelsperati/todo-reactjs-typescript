@@ -22,7 +22,18 @@ export const Container = styled.div(
 
     label {
         color: #ccc;
-        text-decoration: ${done ? "line-through" : "initial"}
+        flex:1;
+        text-decoration: ${done ? "line-through" : "initial"};
+    }
+    
+    .remove {
+      margin-right: 5px;
+      cursor: pointer;
+      font-size: 24px
+    }
+
+    .remove:hover{
+      color: red;
     }
 `
 );

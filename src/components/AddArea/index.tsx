@@ -1,5 +1,6 @@
 import { useState, useCallback, KeyboardEvent } from "react";
 import * as Component from "./styles";
+import { IoIosAddCircle } from "react-icons/io";
 
 type Props = {
   onEnter: (taskName: string) => void;
@@ -8,21 +9,25 @@ type Props = {
 const AddArea = ({ onEnter }: Props) => {
   const [inputText, setinputText] = useState<string>("");
 
+  const enterData = useCallback(() => {
+    if (inputText !== "") {
+      onEnter(inputText);
+      setinputText("");
+    }
+  }, [inputText, onEnter]);
+
   const handleKeyUp = useCallback(
     (event: KeyboardEvent) => {
-      console.log("out enter");
-      if (event.code === "Enter" && inputText !== "") {
-        console.log("enter");
-        onEnter(inputText);
-        setinputText("");
+      if (event.code === "Enter") {
+        enterData();
       }
     },
-    [inputText, onEnter]
+    [enterData]
   );
 
   return (
     <Component.Container>
-      <div className="image">+</div>
+      <IoIosAddCircle className="add" />
       <input
         value={inputText}
         onChange={(e) => setinputText(e.target.value)}
