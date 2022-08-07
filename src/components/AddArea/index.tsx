@@ -27,7 +27,7 @@ const AddArea = ({ onEnter }: Props) => {
 
   return (
     <Component.Container>
-      <IoIosAddCircle className="add" />
+      <IoIosAddCircle className="add" onClick={enterData} />
       <input
         value={inputText}
         onChange={(e) => setinputText(e.target.value)}
