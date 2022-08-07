@@ -3,12 +3,10 @@ import * as Component from "./App.styles";
 import { Item } from "./types/Item";
 import ListItem from "./components/ListItem";
 import AddArea from "./components/AddArea";
+import { useLocalStorage } from "usehooks-ts";
 
 const App = () => {
-  const [list, setList] = useState<Item[]>([
-    { id: 1, name: "Comprar pão", done: false },
-    { id: 2, name: "Comprar cola", done: true },
-  ]);
+  const [list, setList] = useLocalStorage<Item[]>("todoList", []);
 
   const handleItemUpdateCheck = useCallback(
     (id: number, done: boolean) => {
@@ -20,14 +18,14 @@ const App = () => {
       }
       setList(newList);
     },
-    [list]
+    [list, setList]
   );
 
   const handleAddTask = useCallback(
     (taskName: string) => {
       let newList = [...list];
       newList.push({
-        id: list[list.length - 1].id + 1,
+        id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
         name: taskName,
         done: false,
       });
