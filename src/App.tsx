@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import * as Component from "./App.styles";
 import { Item } from "./types/Item";
 import ListItem from "./components/ListItem";
@@ -31,7 +31,7 @@ const App = () => {
       });
       setList(newList);
     },
-    [list]
+    [list, setList]
   );
 
   return (
